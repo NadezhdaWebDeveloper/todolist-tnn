@@ -13,7 +13,6 @@ $(document).ready(function(){
         data: todo
       }).done(function(data){
         //do something with the data via front-end framework
-        console.log(data);
         location.reload();
       });
 
@@ -25,11 +24,14 @@ $(document).ready(function(){
       var item = $(this).text().replace(/ /g, "-");
       $.ajax({
         type: 'DELETE',
-        url: '/todo/' + item,
-        success: function(data){
-          //do something with the data via front-end framework
-          location.reload();
-        }
+        dataType: 'JSON',
+        url: '/todo/' + item
+      }).done(function(data){
+        //do something with the data via front-end framework
+        location.reload();
+      }).fail(function(data){
+        //do something with the data via front-end framework
+        console.log(data);
       });
   });
 
